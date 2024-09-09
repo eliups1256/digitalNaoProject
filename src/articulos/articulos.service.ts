@@ -32,9 +32,10 @@ export class ArticulosService {
     },
   ];
 
+  @InjectRepository(Articulo) private articulosRepository: Repository<Articulo>;
 
   constructor(
-    @InjectRepository(Articulo) private articulosRepository: Repository<Articulo>, 
+    @InjectRepository(Articulo) private articulosRepository1: Repository<Articulo>, 
   ) {}
 
   async findAll(params): Promise<Articulo[]> { 
