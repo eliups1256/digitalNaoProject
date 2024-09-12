@@ -24,7 +24,7 @@ class ConfigService {
       type: 'mysql', 
 
       host: this.getValue('TUTORIAL_HOST'), 
-      port: parseInt(this.getValue('TUTORIAL_PORT')),
+      port: parseInt(this.getValue('TUTORIAL_PORT')), 
       username: this.getValue('TUTORIAL_USER'),
       password: this.getValue('TUTORIAL_PASSWORD'), 
       database: this.getValue('TUTORIAL_DATABASE'),

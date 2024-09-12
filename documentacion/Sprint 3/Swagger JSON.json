@@ -1,0 +1,252 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/v1": {
+            "get": {
+                "operationId": "AppController_getHello",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/articulos": {
+            "get": {
+                "operationId": "ArticulosController_findAll",
+                "summary": "Obtener lista de libros",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "Lista de Articulos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Articulo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "articulo"
+                ]
+            },
+            "post": {
+                "operationId": "ArticulosController_createArticulo",
+                "summary": "Crear un Articulo",
+                "parameters": [],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Articulo"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Datos del Articulo creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Articulo"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden."
+                    }
+                },
+                "tags": [
+                    "articulo"
+                ]
+            }
+        },
+        "/api/v1/articulos/{articuloId}": {
+            "get": {
+                "operationId": "ArticulosController_findBook",
+                "summary": "Devuelve información sobre un Articulo específico",
+                "parameters": [
+                    {
+                        "name": "articuloId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Datos del Articulo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Articulo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "articulo"
+                ]
+            },
+            "delete": {
+                "operationId": "ArticulosController_deleteBook",
+                "summary": "Eliminar un Articulo específico",
+                "parameters": [
+                    {
+                        "name": "articuloId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Datos del Articulo eliminado"
+                    }
+                },
+                "tags": [
+                    "articulo"
+                ]
+            },
+            "put": {
+                "operationId": "ArticulosController_updateArticulo",
+                "summary": "Actualizar un Articulo específico",
+                "parameters": [
+                    {
+                        "name": "articuloId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticuloDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Datos del Articulo actualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Articulo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "articulo"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Bookstore REST API",
+        "description": "API REST de Bookstore",
+        "version": "1.0",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "securitySchemes": {
+            "access-token": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http",
+                "in": "header"
+            }
+        },
+        "schemas": {
+            "Articulo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 99
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Television 50 pulgadas"
+                    },
+                    "depto": {
+                        "type": "string",
+                        "example": "Electronica"
+                    },
+                    "subdepto": {
+                        "type": "string",
+                        "example": "Televisiones"
+                    },
+                    "precio": {
+                        "type": "number",
+                        "example": "12000"
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "example": "./img/tele50.jpg"
+                    }
+                },
+                "required": [
+                    "id",
+                    "descripcion",
+                    "depto",
+                    "subdepto",
+                    "precio",
+                    "image_url"
+                ]
+            },
+            "ArticuloDto": {
+                "type": "object",
+                "properties": {
+                    "descripcion": {
+                        "type": "string",
+                        "example": "Television 50 pulgadas"
+                    },
+                    "dpto": {
+                        "type": "string",
+                        "example": "Electronica"
+                    },
+                    "subdepto": {
+                        "type": "string",
+                        "example": "Televisiones"
+                    },
+                    "precio": {
+                        "type": "string",
+                        "example": "12000"
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "example": "./img/tele50.jpg"
+                    }
+                },
+                "required": [
+                    "descripcion",
+                    "dpto",
+                    "subdepto",
+                    "precio",
+                    "image_url"
+                ]
+            }
+        }
+    }
+}
